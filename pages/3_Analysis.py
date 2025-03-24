@@ -10,8 +10,28 @@ st.set_page_config(page_title="Plotting Demo")
 
 st.title('Analytics')
 
-new_df = pd.read_csv(r"datasets\data_viz1.csv")
-feature_text = pickle.load(open(r"datasets\feature_text.pkl",'rb'))
+# Load the files with error handling
+try:
+    new_df = pd.read_csv(r"../datasets/data_viz1.csv")
+except FileNotFoundError:
+    st.error("Could not find data_viz1.csv in the datasets directory. Please ensure the file is uploaded to the 'datasets/' folder in the GitHub repository.")
+    st.stop()
+except Exception as e:
+    st.error(f"Error loading data_viz1.csv: {str(e)}")
+    st.stop()
+
+try:
+    with open(r"../datasets/feature_text.pkl", 'rb') as file:
+        feature_text = pickle.load(file)
+except FileNotFoundError:
+    st.error("Could not find feature_text.pkl in the datasets directory. Please ensure the file is uploaded to the 'datasets/' folder in the GitHub repository.")
+    st.stop()
+except pickle.UnpicklingError:
+    st.error("feature_text.pkl is corrupted or not a valid pickle file")
+    st.stop()
+except Exception as e:
+    st.error(f"Error loading feature_text.pkl: {str(e)}")
+    st.stop()
 
 
 group_df = new_df.groupby('sector')[['price','price_per_sqft','built_up_area','latitude','longitude']].mean()
