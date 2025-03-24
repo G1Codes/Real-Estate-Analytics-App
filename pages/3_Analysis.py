@@ -12,7 +12,7 @@ st.title('Analytics')
 
 # Load the files with error handling
 try:
-    new_df = pd.read_csv(r"../datasets/data_viz1.csv")
+    new_df = pd.read_csv(r"https://raw.githubusercontent.com/G1Codes/Real-Estate-Analytics-App/refs/heads/main/datasets/data_viz1.csv")
 except FileNotFoundError:
     st.error("Could not find data_viz1.csv in the datasets directory. Please ensure the file is uploaded to the 'datasets/' folder in the GitHub repository.")
     st.stop()
