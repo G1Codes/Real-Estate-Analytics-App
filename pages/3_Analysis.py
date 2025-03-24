@@ -21,7 +21,7 @@ except Exception as e:
     st.stop()
 
 try:
-    with open(r"../datasets/feature_text.pkl", 'rb') as file:
+    with open(r"datasets/feature_text.pkl", 'rb') as file:
         feature_text = pickle.load(file)
 except FileNotFoundError:
     st.error("Could not find feature_text.pkl in the datasets directory. Please ensure the file is uploaded to the 'datasets/' folder in the GitHub repository.")
@@ -105,13 +105,3 @@ sns.histplot(new_df[new_df['property_type'] == 'house']['price'],label='house', 
 sns.histplot(new_df[new_df['property_type'] == 'flat']['price'], label='flat',kde=True)
 plt.legend()
 st.pyplot(fig3)
-
-
-
-
-
-
-
-
-
-
