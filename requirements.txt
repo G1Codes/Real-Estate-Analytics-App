@@ -1,0 +1,9 @@
+streamlit
+pandas
+numpy
+plotly
+wordcloud
+matplotlib
+seaborn
+gdown  # For downloading pipeline.pkl
+scikit-learn
